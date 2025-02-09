@@ -35,7 +35,10 @@ function Footer() {
           className="flex flex-col items-center md:items-start text-center md:text-left
             space-y-9"
         >
-          <p className="text-4xl font-bold">
+          <p
+            className="text-4xl font-bold"
+            style={{ fontFamily: "Bahnschrift " }}
+          >
             Закажи го твојот <br /> настан со нас
           </p>
           <Link
