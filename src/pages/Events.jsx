@@ -1,7 +1,26 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
 import { useState } from "react";
 import ImageCarousel from "../ui/ImageCarousel";
 
 const Events = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(
+        location.hash.substring(1),
+      );
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }
+  }, [location]);
+
   const [isCarouselOpen, setIsCarouselOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
@@ -38,6 +57,7 @@ const Events = () => {
 
       {/* Section 1 - Private */}
       <div
+        id="privatni"
         className="flex flex-col md:flex-row items-start px-4 md:px-4 lg:px-8 xl:px-12
           2xl:px-20 gap-4 md:gap-6 lg:gap-8 xl:gap-10 2xl:gap-12 py-4 md:py-5
           lg:py-6 xl:py-8 2xl:py-10"
@@ -103,6 +123,7 @@ const Events = () => {
 
       {/* Section 2 - Celebrations */}
       <div
+        id="proslavi"
         className="flex flex-col md:flex-row-reverse items-start px-4 md:px-4 lg:px-8
           xl:px-12 2xl:px-20 gap-4 md:gap-6 lg:gap-8 xl:gap-10 2xl:gap-12 py-4
           md:py-5 lg:py-6 xl:py-8 2xl:py-10"
@@ -171,6 +192,7 @@ const Events = () => {
 
       {/* Section 3 - Weddings */}
       <div
+        id="svadbi"
         className="flex flex-col md:flex-row items-start px-4 md:px-4 lg:px-8 xl:px-12
           2xl:px-20 gap-4 md:gap-6 lg:gap-8 xl:gap-10 2xl:gap-12 py-4 md:py-5
           lg:py-6 xl:py-8 2xl:py-10"
@@ -237,6 +259,7 @@ const Events = () => {
 
       {/* Section 4 - Corporate */}
       <div
+        id="korporativni"
         className="flex flex-col md:flex-row-reverse items-start px-4 md:px-4 lg:px-8
           xl:px-12 2xl:px-20 gap-4 md:gap-6 lg:gap-8 xl:gap-10 2xl:gap-12 py-4
           md:py-5 lg:py-6 xl:py-8 2xl:py-10"
