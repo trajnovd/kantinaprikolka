@@ -1,4 +1,23 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
 const Events = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(
+        location.hash.substring(1),
+      );
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }
+  }, [location]);
+
   return (
     <div className="bg-[#EFE8DB]">
       {/* Top Section with Full-Width Image */}
@@ -13,7 +32,10 @@ const Events = () => {
       </div>
 
       {/* Section 1 */}
-      <div className="flex flex-col md:flex-row items-center py-10 px-5 md:px-20 gap-10">
+      <div
+        id="privatni"
+        className="flex flex-col md:flex-row items-center py-10 px-5 md:px-20 gap-10"
+      >
         <div className="md:w-1/2 flex flex-col items-start">
           <div
             className="bg-[#77846E] text-[#EFE8DB] rounded-tr-4xl rounded-br-4xl px-4 py-2
@@ -41,6 +63,7 @@ const Events = () => {
 
       {/* Section 2 */}
       <div
+        id="proslavi"
         className="flex flex-col md:flex-row-reverse items-center py-10 px-5 md:px-20
           gap-10"
       >
@@ -68,7 +91,10 @@ const Events = () => {
       </div>
 
       {/* Section 3 */}
-      <div className="flex flex-col md:flex-row items-center py-10 px-5 md:px-20 gap-10">
+      <div
+        id="svadbi"
+        className="flex flex-col md:flex-row items-center py-10 px-5 md:px-20 gap-10"
+      >
         <div className="md:w-1/2 flex flex-col items-start">
           <div
             className="bg-[#77846E] text-[#EFE8DB] rounded-tr-4xl rounded-br-4xl px-4 py-2
@@ -95,7 +121,10 @@ const Events = () => {
       </div>
 
       {/* Section 4 */}
-      <div className="flex flex-col md:flex-row-reverse items-center py-10 px-5 md:px-20">
+      <div
+        id="korporativni"
+        className="flex flex-col md:flex-row-reverse items-center py-10 px-5 md:px-20"
+      >
         <div className="md:w-1/2 flex flex-col items-end">
           <div
             className="bg-[#77846E] text-[#EFE8DB] rounded-tl-4xl rounded-bl-4xl px-4 py-2
