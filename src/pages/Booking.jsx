@@ -17,6 +17,8 @@ const Booking = () => {
     time: 4, // Default hours for Основен пакет
     drinksPerGuest: 3, // Default drinks per guest for Основен пакет
     barMenu: "Основен", // Default bar menu for Основен пакет
+    Bartenders: 1,
+    Waiters: 0,
     extraBartenders: 0,
     extraWaiters: 0,
     glassGlasses: false,
@@ -47,6 +49,8 @@ const Booking = () => {
         time: 4,
         drinksPerGuest: 3,
         barMenu: "Основен",
+        Waiters: 0,
+        Bartenders: 1,
       },
     },
     {
@@ -66,6 +70,9 @@ const Booking = () => {
         time: 6,
         drinksPerGuest: 4,
         barMenu: "Стандард",
+        Waiters: 1,
+        Bartenders: 2,
+        nonAlcoholicCocktails: true,
       },
     },
     {
@@ -86,6 +93,10 @@ const Booking = () => {
         time: "unlimited",
         drinksPerGuest: "unlimited",
         barMenu: "Премиум",
+        Waiters: 2,
+        Bartenders: 3,
+        glassGlasses: true,
+        nonAlcoholicCocktails: true,
       },
     },
   ];
@@ -124,6 +135,10 @@ const Booking = () => {
       time: defaults.time,
       drinksPerGuest: defaults.drinksPerGuest,
       barMenu: defaults.barMenu,
+      Waiters: defaults.Waiters,
+      Bartenders: defaults.Bartenders,
+      nonAlcoholicCocktails: defaults.nonAlcoholicCocktails,
+      glassGlasses: defaults.glassGlasses,
     });
   };
 
@@ -177,12 +192,42 @@ const Booking = () => {
     }
   }
 
+  const baseBartenders =
+    formData.package === "Основен пакет"
+      ? 1
+      : formData.package === "Стандард пакет"
+        ? 2
+        : 3;
+  const baseWaiters =
+    formData.package === "Основен пакет"
+      ? 0
+      : formData.package === "Стандард пакет"
+        ? 1
+        : 2;
+
   // Extra bartenders and waiters costs
-  const extraBartendersCost = formData.extraBartenders * 2000;
-  const extraWaitersCost = formData.extraWaiters * 2000;
-  const glassGlassesCost = formData.glassGlasses ? 6000 : 0;
+  const extraBartendersCost =
+    Math.max(0, formData.extraBartenders - baseBartenders) * 2000;
+  const extraWaitersCost =
+    Math.max(0, formData.extraWaiters - baseWaiters) * 2000;
+
   const champagneCost = formData.champagneStation ? 12000 : 0;
-  const nonAlcoholicCost = formData.nonAlcoholicCocktails ? 2000 : 0;
+
+  // Adjusted costs based on package
+  const nonAlcoholicCost =
+    formData.package === "Премиум пакет" ||
+    formData.package === "Стандард пакет"
+      ? 0
+      : formData.nonAlcoholicCocktails
+        ? 2000
+        : 0;
+
+  const glassGlassesCost =
+    formData.package === "Премиум пакет"
+      ? 0
+      : formData.glassGlasses
+        ? 6000
+        : 0;
 
   const totalCost =
     baseCost +
@@ -214,8 +259,11 @@ const Booking = () => {
       Guests: formData.Guests,
       time: formData.time,
       drinksPerGuest: formData.drinksPerGuest,
-      extraBartenders: formData.extraBartenders,
-      extraWaiters: formData.extraWaiters,
+      extraBartenders: Math.max(
+        0,
+        formData.extraBartenders - baseBartenders,
+      ),
+      extraWaiters: Math.max(0, formData.extraWaiters - baseWaiters),
       glassGlasses: formData.glassGlasses ? "Yes" : "No",
       champagneStation: formData.champagneStation ? "Yes" : "No",
       nonAlcoholicCocktails: formData.nonAlcoholicCocktails
@@ -477,7 +525,7 @@ const Booking = () => {
                   <label className="block mb-2">
                     Бар мени (по гостин):
                   </label>
-                  <div className="border-2 border-[#77846E] bg-[#EFE8D8] text-[#77846E] p-2 rounded">
+                  <div className="border-2 border-[#77846E] bg-[#EFE8D8] text-[#77846E] p-2 rounded w-30">
                     <input
                       type="text"
                       name="barMenu"
@@ -494,72 +542,107 @@ const Booking = () => {
                   <label className="block mb-2">
                     Дополнителен бармен (2000мкд):
                   </label>
-                  <div
-                    className="border-2 border-[#77846E] bg-[#EFE8D8] text-[#77846E] p-2 rounded
-                      inline-block"
-                  >
+                  <div className="border-2 border-[#77846E] bg-[#EFE8D8] text-[#77846E] p-2 rounded w-14">
                     <select
                       name="extraBartenders"
                       value={formData.extraBartenders}
                       onChange={handleChange}
                       className="bg-transparent text-lg focus:outline-none"
                     >
-                      {[0, 1, 2, 3].map((num) => (
-                        <option key={num} value={num}>
-                          {num}
-                        </option>
-                      ))}
+                      {(() => {
+                        let options = [];
+                        if (formData.package === "Основен пакет") {
+                          options = [1, 2, 3];
+                        } else if (
+                          formData.package === "Стандард пакет"
+                        ) {
+                          options = [2, 3];
+                        } else if (
+                          formData.package === "Премиум пакет"
+                        ) {
+                          options = [3];
+                        }
+                        return options.map((num) => (
+                          <option key={num} value={num}>
+                            {num}
+                          </option>
+                        ));
+                      })()}
                     </select>
                   </div>
                 </div>
-
                 {/* Extra Waiters */}
                 <div>
                   <label className="block mb-2">
                     Дополнителен келнер (2000мкд):
                   </label>
-                  <div
-                    className="border-2 border-[#77846E] bg-[#EFE8D8] text-[#77846E] p-2 rounded
-                      inline-block"
-                  >
+                  <div className="border-2 border-[#77846E] bg-[#EFE8D8] text-[#77846E] p-2 rounded w-14">
                     <select
                       name="extraWaiters"
                       value={formData.extraWaiters}
                       onChange={handleChange}
                       className="bg-transparent text-lg focus:outline-none"
                     >
-                      {[0, 1, 2, 3].map((num) => (
-                        <option key={num} value={num}>
-                          {num}
-                        </option>
-                      ))}
+                      {(() => {
+                        let options = [];
+                        if (formData.package === "Основен пакет") {
+                          options = [0, 1, 2];
+                        } else if (
+                          formData.package === "Стандард пакет"
+                        ) {
+                          options = [1, 2];
+                        } else if (
+                          formData.package === "Премиум пакет"
+                        ) {
+                          options = [2];
+                        }
+                        return options.map((num) => (
+                          <option key={num} value={num}>
+                            {num}
+                          </option>
+                        ));
+                      })()}
                     </select>
                   </div>
                 </div>
-
                 {/* Glass Cups (Checkbox) */}
+                {/* Glass Glasses */}
                 <div>
                   <label className="flex items-center">
                     <input
                       type="checkbox"
                       name="glassGlasses"
-                      checked={formData.glassGlasses}
+                      checked={
+                        formData.package === "Премиум пакет"
+                          ? true
+                          : formData.glassGlasses
+                      }
                       onChange={handleChange}
                       className="mr-2"
+                      disabled={formData.package === "Премиум пакет"}
                     />
                     Стаклени чаши (6000мкд)
                   </label>
                 </div>
 
-                {/* Non-Alcoholic Cocktails (Checkbox) */}
+                {/* Non-Alcoholic Cocktails */}
                 <div>
                   <label className="flex items-center">
                     <input
                       type="checkbox"
                       name="nonAlcoholicCocktails"
-                      checked={formData.nonAlcoholicCocktails}
+                      checked={
+                        formData.package === "Премиум пакет" ||
+                        formData.package === "Стандард пакет"
+                          ? true
+                          : formData.nonAlcoholicCocktails
+                      }
                       onChange={handleChange}
                       className="mr-2"
+                      disabled={
+                        formData.package === "Премиум пакет" ||
+                        formData.package === "Стандард пакет"
+                      }
                     />
                     Безалкохолни коктели (2000мкд)
                   </label>
