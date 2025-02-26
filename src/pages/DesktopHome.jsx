@@ -193,7 +193,7 @@ const DesktopHome = () => {
             onClick={() => navigate("/events#proslavi")}
           >
             <img
-              src="Photos/kantina-vodno-72.JPG"
+              src="Photos/kantina-vodno-72.webp"
               alt="Прослави"
               className="absolute inset-0 w-full h-full object-cover"
             />
