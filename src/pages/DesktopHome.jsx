@@ -25,7 +25,7 @@ const DesktopHome = () => {
           {/* Image Section */}
           <div className="overflow-hidden -mr-52 relative z-10 h-full">
             <motion.img
-              src="Photos/cela prikolka so lugje od daleku.jpg" // Replace with your left-side image path
+              src="Photos/cela prikolka so lugje od daleku.webp" // Replace with your left-side image path
               alt="Cocktail Bar"
               className="w-full h-auto object-cover rounded-br-[100px]"
               initial={{ opacity: 0, y: 50 }}
@@ -172,7 +172,7 @@ const DesktopHome = () => {
             onClick={() => navigate("/events#privatni")}
           >
             <img
-              src="Photos/kantina-vodno-56.JPG"
+              src="Photos/kantina-vodno-56.webp"
               alt="Приватни"
               className="absolute inset-0 w-full h-full object-cover"
             />
@@ -211,7 +211,7 @@ const DesktopHome = () => {
             onClick={() => navigate("/events#svadbi")}
           >
             <img
-              src="Photos/cela prikolka so lugje od daleku.jpg"
+              src="Photos/cela prikolka so lugje od daleku.webp"
               alt="Свадби"
               className="absolute inset-0 w-full h-full object-cover"
             />
@@ -229,7 +229,7 @@ const DesktopHome = () => {
             onClick={() => navigate("/events#korporativni")}
           >
             <img
-              src="Photos/kantina-vodno-44.JPG"
+              src="Photos/kantina-vodno-44.webp"
               alt="Корпоративни"
               className="absolute inset-0 w-full h-full object-cover"
             />

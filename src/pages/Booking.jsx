@@ -291,12 +291,12 @@ const Booking = () => {
 
   return (
     <Modal>
-      <div className="bg-[#EFE8D8] text-[#77846E] pb-10">
+      <div className="bg-[#EFE8D8] text-[#77846E] pb-10 pt-16">
         {/* Top Image Section */}
         <div
           className="relative w-full h-[250px] sm:h-[350px] bg-cover bg-center"
           style={{
-            backgroundImage: "url('Photos/kantina-vodno-72.JPG')",
+            backgroundImage: "url('Photos/kantina-vodno-72.webp')",
           }}
         >
           <h1

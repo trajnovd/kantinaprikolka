@@ -1,29 +1,25 @@
+// Home.jsx
 import { useState, useEffect } from "react";
 import MobileHome from "./MobileHome";
 import DesktopHome from "./DesktopHome";
 
 const HomePage = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 425);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 430);
-    };
+    const mediaQuery = window.matchMedia("(max-width: 430px)");
 
-    window.addEventListener("resize", handleResize);
+    // Set initial state
+    setIsMobile(mediaQuery.matches);
 
-    return () => window.removeEventListener("resize", handleResize);
+    // Update state on media query change
+    const handler = (e) => setIsMobile(e.matches);
+    mediaQuery.addEventListener("change", handler);
+
+    return () => mediaQuery.removeEventListener("change", handler);
   }, []);
 
-  return (
-    <>
-      {isMobile ? (
-        <MobileHome /> // Your mobile design component
-      ) : (
-        <DesktopHome /> // Your desktop/tablet design component
-      )}
-    </>
-  );
+  return isMobile ? <MobileHome /> : <DesktopHome />;
 };
 
 export default HomePage;

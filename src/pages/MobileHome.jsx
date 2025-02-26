@@ -9,7 +9,7 @@ const MobileHome = () => {
       {/* Image Section with Overlayed Title and Booking Button */}
       <section className="relative">
         <motion.img
-          src="Photos/cela prikolka so lugje od daleku.jpg" // Mobile top image
+          src="Photos/cela prikolka so lugje od daleku.webp" // Mobile top image
           alt="Cocktail Bar"
           className="w-full h-80 object-cover blur-[1px] brightness-90"
           initial={{ opacity: 0, y: 50 }}
@@ -121,7 +121,7 @@ const MobileHome = () => {
             onClick={() => navigate("/events#privatni")}
           >
             <img
-              src="Photos/kantina-vodno-56.JPG"
+              src="Photos/kantina-vodno-56.webp"
               alt="Приватни"
               className="w-full h-full object-cover"
             />
@@ -138,7 +138,7 @@ const MobileHome = () => {
             onClick={() => navigate("/events#proslavi")}
           >
             <img
-              src="Photos/kantina-vodno-72.JPG"
+              src="Photos/kantina-vodno-72.webp"
               alt="Прослави"
               className="w-full h-full object-cover"
             />
@@ -155,7 +155,7 @@ const MobileHome = () => {
             onClick={() => navigate("/events#svadbi")}
           >
             <img
-              src="Photos/cela prikolka so lugje od daleku.jpg"
+              src="Photos/cela prikolka so lugje od daleku.webp"
               alt="Свадби"
               className="w-full h-full object-cover"
             />
@@ -172,7 +172,7 @@ const MobileHome = () => {
             onClick={() => navigate("/events#korporativni")}
           >
             <img
-              src="Photos/kantina-vodno-44.JPG"
+              src="Photos/kantina-vodno-44.webp"
               alt="Корпоративни"
               className="w-full h-full object-cover"
             />
