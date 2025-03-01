@@ -38,7 +38,7 @@ const DesktopHome = () => {
             {" "}
             “
           </p>
-          <div className="mt-6 bg-[#EFE8D8] p-6 rounded-lg md:pb-20">
+          <div className="mt-6 bg-[#EFE8D8] p-6 rounded-lg md:pb-20 xl:ml-10 lg:ml-6 md:ml-3">
             <motion.blockquote
               className="text-5xl text-[#77846E]"
               initial={{ opacity: 0, x: -50 }}
@@ -75,7 +75,7 @@ const DesktopHome = () => {
           {/* Headline */}
           <motion.h1
             className="text-[#EFE8D8] text-4xl md:text-5xl lg:text-7xl font-bold mb-4
-              relative z-20 text-center lg:text-left"
+              relative z-20 text-right lg:text-right xl:text-right mt-12"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -85,8 +85,8 @@ const DesktopHome = () => {
 
           {/* Subheadline */}
           <motion.p
-            className="text-[#EFE8D8] text-base md:text-xl font-medium mb-6 relative z-20
-              text-center"
+            className="text-[#EFE8D8] w-full text-base md:text-xl font-medium mb-6 relative
+              z-20 text-right lg:text-right xl:text-right mt-4"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -96,7 +96,7 @@ const DesktopHome = () => {
 
           {/* Booking Button */}
           <motion.div
-            className="w-48 mx-auto mt-10 md:mt-28 lg:ml-[300px] xl:ml-[400px]"
+            className="w-48 mx-auto mt-10 md:ml-48 md:mt-10 lg:ml-[320px] xl:ml-[500px]"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -118,21 +118,22 @@ const DesktopHome = () => {
           {/* Stats */}
           <div
             className="flex flex-col md:flex-row items-center justify-center md:justify-start
-              gap-8 md:gap-16 mt-10 md:mt-24 mb-10 relative z-20 lg:ml-30 xl:ml-48"
+              gap-8 md:gap-16 mt-10 md:mt-30 mb-10 relative z-20 lg:ml-16 xl:ml-36
+              xl:gap-40 lg:gap-24"
           >
             <div className="text-center md:text-left">
-              <p className="text-4xl md:text-9xl text-[#EFE8D8] font-bold">
+              <p className="md:text-9xl lg:text-[150px] xl:text-[175px] text-[#EFE8D8] font-bold">
                 8+
               </p>
-              <p className="text-base md:text-lg text-[#EFE8D8]">
-                года искуство
+              <p className="text-base md:text-xl lg:text-2xl xl:text-3xl text-[#EFE8D8]">
+                години искуство
               </p>
             </div>
             <div className="text-center md:text-left">
-              <p className="text-4xl md:text-9xl text-[#EFE8D8] font-bold">
+              <p className="xl:text-[175px] lg:text-[150px] md:text-9xl text-[#EFE8D8] font-bold">
                 50+
               </p>
-              <p className="text-base md:text-lg text-[#EFE8D8]">
+              <p className="text-base md:text-xl lg:text-2xl xl:text-3xl text-[#EFE8D8]">
                 настани секоја година
               </p>
             </div>

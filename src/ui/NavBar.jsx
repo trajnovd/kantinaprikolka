@@ -55,7 +55,7 @@ function Navbar() {
             <img
               src="/Icons/prikolce kopce ikona-09.svg"
               alt="Logo"
-              className="h-10 w-auto"
+              className="md:h-10 md:w-auto h-12 w-14"
             />
           </Link>
 
