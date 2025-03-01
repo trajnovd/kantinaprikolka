@@ -2,7 +2,7 @@ function Contact() {
   return (
     <div
       className="min-h-screen bg-[#77846E] text-[#EFE8D8] flex flex-col items-center
-        justify-center px-4 py-8 md:px-6 md:py-10 lg:py-12"
+        justify-center px-4 py-8 md:px-6 md:py-10 lg:py-12 mt-10"
     >
       <img
         src="/Icons/logo-11.svg"

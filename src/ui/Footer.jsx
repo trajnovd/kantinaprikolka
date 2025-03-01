@@ -35,14 +35,14 @@ function Footer() {
           className="flex flex-col items-center md:items-start text-center md:text-left
             space-y-9"
         >
-          <p className="text-4xl font-bold">
+          <p className="text-4xl font-bold md:text-right">
             Закажи го твојот <br /> настан со нас
           </p>
           <Link
             to="/booking"
             className="bg-[#93A387] text-[#EFE8DB] px-6 py-2 rounded-full font-semibold
               text-3xl hover:bg-opacity-90 transition-transform transform
-              hover:scale-105"
+              hover:scale-105 text-right md:ml-14"
           >
             РЕЗЕРВИРАЈ
           </Link>

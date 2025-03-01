@@ -5,13 +5,14 @@ import Modal from "../ui/Modal";
 import { form } from "framer-motion/client";
 import Loader from "../ui/Loader";
 import { toast } from "react-toastify";
+import DatePicker from "react-datepicker";
 
 const Booking = () => {
   // Initial state with fixed base guests and add-on fields
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    date: "",
+    date: null,
     package: "Основен пакет",
     Guests: 50, // Fixed base guests
     time: 4, // Default hours for Основен пакет
@@ -97,6 +98,7 @@ const Booking = () => {
         Bartenders: 3,
         glassGlasses: true,
         nonAlcoholicCocktails: true,
+        champagneStation: true,
       },
     },
   ];
@@ -139,9 +141,16 @@ const Booking = () => {
       Bartenders: defaults.Bartenders,
       nonAlcoholicCocktails: defaults.nonAlcoholicCocktails,
       glassGlasses: defaults.glassGlasses,
+      champagneStation: defaults.champagneStation,
     });
   };
 
+  const handleDateChange = (date) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      date, // Store Date object
+    }));
+  };
   // Calculate base cost based on package
   const baseCost =
     formData.package === "Премиум пакет"
@@ -211,8 +220,6 @@ const Booking = () => {
   const extraWaitersCost =
     Math.max(0, formData.extraWaiters - baseWaiters) * 2000;
 
-  const champagneCost = formData.champagneStation ? 12000 : 0;
-
   // Adjusted costs based on package
   const nonAlcoholicCost =
     formData.package === "Премиум пакет" ||
@@ -227,6 +234,13 @@ const Booking = () => {
       ? 0
       : formData.glassGlasses
         ? 6000
+        : 0;
+
+  const champagneCost =
+    formData.package === "Премиум пакет"
+      ? 0
+      : formData.champagneStation
+        ? 12000
         : 0;
 
   const totalCost =
@@ -314,7 +328,7 @@ const Booking = () => {
           </h2>
           <p className="text-lg sm:text-xl mt-2">
             Пополни ги деталите за твојот настан и добиј
-            персонализирана понуда од нашиот тим во најскоро време
+            персонализирана понуда од нашиот тим во најскоро време.
           </p>
         </div>
 
@@ -357,10 +371,10 @@ const Booking = () => {
                         {pkg.details.map((detail, index) => (
                           <li
                             key={index}
-                            className="flex items-center text-sm"
+                            className="flex items-center text-base"
                           >
-                            <FaCheck className="mr-2" />
-                            {detail}
+                            <FaCheck className="mr-2 text-lg flex-shrink-0 self-center" />
+                            <span>{detail}</span>
                           </li>
                         ))}
                       </ul>
@@ -396,14 +410,19 @@ const Booking = () => {
                   className="p-3 bg-transparent border-b-2 border-[#77846E] focus:outline-none
                     text-lg"
                 />
-                <input
-                  type="date"
-                  name="date"
-                  value={formData.date || ""}
-                  onChange={handleChange}
-                  required
+                <DatePicker
+                  selected={formData.date}
+                  onChange={handleDateChange}
+                  dateFormat="dd/MM/yyyy"
+                  placeholderText="DD/MM/YYYY"
                   className="p-3 bg-transparent border-b-2 border-[#77846E] focus:outline-none
-                    text-lg"
+                    text-lg w-full placeholder:text-[#93A387] placeholder:opacity-100"
+                  calendarClassName="!bg-white !rounded-lg !shadow-lg !border-none"
+                  popperClassName="!z-50"
+                  showPopperArrow={false}
+                  showMonthDropdown
+                  showYearDropdown
+                  dropdownMode="select"
                 />
               </div>
             </div>
@@ -522,9 +541,7 @@ const Booking = () => {
 
                 {/* Bar Menu (Disabled - fixed based on package) */}
                 <div>
-                  <label className="block mb-2">
-                    Бар мени (по гостин):
-                  </label>
+                  <label className="block mb-2">Бар мени:</label>
                   <div className="border-2 border-[#77846E] bg-[#EFE8D8] text-[#77846E] p-2 rounded w-30">
                     <input
                       type="text"
@@ -540,7 +557,7 @@ const Booking = () => {
                 {/* Extra Bartenders */}
                 <div>
                   <label className="block mb-2">
-                    Дополнителен бармен (2000мкд):
+                    Дополнителен бармен:
                   </label>
                   <div className="border-2 border-[#77846E] bg-[#EFE8D8] text-[#77846E] p-2 rounded w-14">
                     <select
@@ -574,7 +591,7 @@ const Booking = () => {
                 {/* Extra Waiters */}
                 <div>
                   <label className="block mb-2">
-                    Дополнителен келнер (2000мкд):
+                    Дополнителен келнер:
                   </label>
                   <div className="border-2 border-[#77846E] bg-[#EFE8D8] text-[#77846E] p-2 rounded w-14">
                     <select
@@ -621,7 +638,7 @@ const Booking = () => {
                       className="mr-2"
                       disabled={formData.package === "Премиум пакет"}
                     />
-                    Стаклени чаши (6000мкд)
+                    Стаклени чаши
                   </label>
                 </div>
 
@@ -644,7 +661,7 @@ const Booking = () => {
                         formData.package === "Стандард пакет"
                       }
                     />
-                    Безалкохолни коктели (2000мкд)
+                    Безалкохолни коктели
                   </label>
                 </div>
 
@@ -657,8 +674,9 @@ const Booking = () => {
                       checked={formData.champagneStation}
                       onChange={handleChange}
                       className="mr-2"
+                      disabled={formData.package === "Премиум пакет"}
                     />
-                    Шампањ станица (12000мкд)
+                    Шампањ станица
                   </label>
                 </div>
               </div>
