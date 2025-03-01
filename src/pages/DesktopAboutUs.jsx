@@ -50,99 +50,96 @@ const DesktopAboutUs = () => {
 
   return (
     <div className="bg-[#EFE8D8] pt-16 overflow-x-hidden">
-      <section className="relative flex flex-wrap md:flex-nowrap">
-        {/* Left Section */}
-        <div className="w-full bg-[#77846E] rounded-br-[100px] pt-6 relative flex flex-col">
-          <img
-            src="/Icons/logo-11.svg"
-            alt="Logo"
-            className="md:w-32 md:h-36 lg:w-34 lg:h-38 xl:w-36 xl:h-40 2xl:w-38 2xl:h-42
-              ml-15"
-          />
+<section className="relative flex flex-wrap md:flex-nowrap">
+  {/* Left Section */}
+  <div className="w-full md:flex-[50%] lg:flex-[47%] bg-[#77846E] rounded-br-[100px] pt-6 relative flex flex-col">
+    <img
+      src="/Icons/logo-11.svg"
+      alt="Logo"
+      className="md:w-32 md:h-36 lg:w-34 lg:h-38 xl:w-36 xl:h-40 2xl:w-38 2xl:h-42 lg:ml-15 md:ml-12"
+    />
 
-          <motion.h1
-            className="text-[#EFE8D8] lg:text-6xl md:text-5xl xl:text-7xl font-bold mb-4
-              ml-15"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            За Нас
-          </motion.h1>
+    <motion.h1
+      className="text-[#EFE8D8] lg:text-6xl md:text-5xl xl:text-7xl font-bold mb-4 lg:ml-15 md:ml-12"
+      initial={{ opacity: 0, x: -50 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8 }}
+    >
+      За Нас
+    </motion.h1>
 
-          <motion.p
-            className="text-[#EFE8D8] md:text-xl lg:text-2xl xl:text-3xl font-light mb-6
-              ml-15"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-          >
-            Нашата Мисија
-          </motion.p>
+    <motion.p
+      className="text-[#EFE8D8] md:text-xl lg:text-2xl xl:text-3xl font-light mb-6 lg:ml-15 md:ml-12"
+      initial={{ opacity: 0, x: 50 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, delay: 0.1 }}
+    >
+      Нашата Мисија
+    </motion.p>
 
-          <div className="flex space-x-8 mt-10 mb-10 items-center ml-15 p-6 pl-0">
-            <motion.blockquote
-              className="md:text-2xl lg:text-3xl xl:text-4xl text-[#EFE8D8] leading-relaxed"
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Ние сме <strong>Кантина Трејлер Бар</strong> и <br />
-              се залагаме да го претвориме <br /> твојот настан во{" "}
-              <strong>коктел оаза</strong>,
-              <br /> оставајќи ги твоите гости со <br />
-              трајни впечатоци. Одбери <br />{" "}
-              <strong>мени со персонализирани коктели</strong>
-              <br /> и пијалоци и остави го другото <br />
-              на нас.
-            </motion.blockquote>
-          </div>
-        </div>
+    <div className="flex space-x-8 mt-10 mb-10 items-center lg:ml-15 md:ml-12 p-6 pl-0">
+      <motion.blockquote
+        className="md:text-xl lg:text-3xl xl:text-4xl text-[#EFE8D8] leading-relaxed"
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
+        Ние сме <strong>Кантина Трејлер Бар</strong> и <br />
+        се залагаме да го претвориме <br /> твојот настан во{" "}
+        <strong>коктел оаза</strong>,
+        <br /> оставајќи ги твоите гости со <br />
+        трајни впечатоци. Одбери <br />{" "}
+        <strong>мени со персонализирани коктели</strong>
+        <br /> и пијалоци и остави го другото <br />
+        на нас.
+      </motion.blockquote>
+    </div>
+  </div>
 
-        {/* Right Section */}
-        <div className="w-full flex flex-col">
-          <motion.div
-            className="overflow-hidden md:-ml-[27%] lg:-ml-[28%] xl:-ml-[25%] relative z-10
-              md:h-[51vh] lg:h-[60vh] xl:h-[75vh]"
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <img
-              src="/Photos/kantina-vodno-44.webp"
-              alt="Cocktail Bar"
-              className="w-full h-full object-cover rounded-bl-[100px]"
-            />
-          </motion.div>
+  {/* Right Section */}
+  <div className="w-full md:flex-[55%] lg:flex-[53%] flex flex-col">
+    <motion.div
+      className="overflow-hidden md:-ml-[20%] lg:-ml-[18%] xl:-ml-[15%] relative z-10
+        md:h-[65vh] lg:h-[60vh] xl:h-[75vh]"
+      initial={{ opacity: 0, x: 100 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, delay: 0.3 }}
+    >
+      <img
+        src="/Photos/kantina-vodno-44.webp"
+        alt="Cocktail Bar"
+        className="w-full h-full object-cover rounded-bl-[100px]"
+      />
+    </motion.div>
 
-          <motion.div
-            className="bg-[#EFE8D8] mr-15 rounded-lg"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <blockquote
-              className="md:text-2xl lg:text-3xl xl:text-4xl text-[#77846E] leading-relaxed p-6
-                text-right"
-            >
-              Користејќи{" "}
-              <strong>
-                свежи и квалитетни
-                <br />
-                состојки
-              </strong>{" "}
-              нашите бармени ги <br />
-              креираат коктелите од твоите
-              <br />
-              соништа. Со <strong>над 50 настани</strong>
-              <br /> изработени, имаме собрано искуство
-              <br /> за да го направиме твојот настан
-              <br /> <strong>перфектен</strong> и{" "}
-              <strong>незаборавен</strong>.
-            </blockquote>
-          </motion.div>
-        </div>
-      </section>
+    <motion.div
+      className="bg-[#EFE8D8] lg:mr-15 md:mr-12 rounded-lg"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.4 }}
+    >
+      <blockquote
+        className="md:text-xl lg:text-3xl xl:text-4xl text-[#77846E] leading-relaxed py-6
+          text-right"
+      >
+        Користејќи{" "}
+        <strong>
+          свежи и квалитетни
+          <br />
+          состојки
+        </strong>{" "}
+        нашите бармени ги <br />
+        креираат коктелите од твоите
+        <br />
+        соништа. Со <strong>над 50 настани</strong>
+        <br /> изработени, имаме собрано искуство
+        <br /> за да го направиме твојот настан
+        <br /> <strong>перфектен</strong> и{" "}
+        <strong>незаборавен</strong>.
+      </blockquote>
+    </motion.div>
+  </div>
+</section>
 
       {/* Gallery Section */}
       <section className="py-20 px-6 bg-[#EFE8D8] mx-auto max-w-6xl">
