@@ -51,7 +51,7 @@ const MobileAboutUs = () => {
     <div className="bg-[#EFE8D8] pt-16 overflow-x-hidden">
       <section className="flex flex-col">
         {/* Top Section */}
-        <div className="w-full bg-[#77846E] rounded-br-[50px] p-6">
+        <div className="w-full bg-[#77846E] rounded-b-[50px] p-6">
           <img
             src="/Icons/logo-11.svg"
             alt="Logo"
@@ -113,9 +113,9 @@ const MobileAboutUs = () => {
           >
             Користејќи <strong>свежи и квалитетни состојки</strong>{" "}
             нашите бармени ги креираат коктелите од твоите соништа. Со{" "}
-            <strong>над 50 настани</strong> изработени, имаме собрано искуство за да го направиме
-            твојот настан <strong>перфектен</strong> и{" "}
-            <strong>незаборавен</strong>.
+            <strong>над 50 настани</strong> изработени, имаме собрано
+            искуство за да го направиме твојот настан{" "}
+            <strong>перфектен</strong> и <strong>незаборавен</strong>.
           </motion.blockquote>
         </div>
       </section>

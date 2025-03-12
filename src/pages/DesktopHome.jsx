@@ -69,13 +69,13 @@ const DesktopHome = () => {
           <img
             src="/Icons/logo-11.svg"
             alt="Logo"
-            className="w-32 h-36 mx-auto md:ml-[230px] lg:mx-0 lg:ml-[350px] xl:ml-[450px]"
+            className="w-32 h-36 mx-auto md:ml-[230px] lg:mx-0 lg:ml-[390px] xl:ml-[450px]"
           />
 
           {/* Headline */}
           <motion.h1
             className="text-[#EFE8D8] text-4xl md:text-5xl lg:text-7xl font-bold mb-4
-              relative z-20 text-right lg:text-right xl:text-right mt-12"
+              relative z-20 text-right lg:text-right xl:text-right mt-12 lg:mr-3"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -86,7 +86,7 @@ const DesktopHome = () => {
           {/* Subheadline */}
           <motion.p
             className="text-[#EFE8D8] w-full text-base md:text-xl font-medium mb-6 relative
-              z-20 text-right lg:text-right xl:text-right mt-4"
+              z-20 text-right lg:text-right xl:text-right mt-4 lg:mr-3"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -125,7 +125,7 @@ const DesktopHome = () => {
               <p className="md:text-9xl lg:text-[150px] xl:text-[175px] text-[#EFE8D8] font-bold">
                 8+
               </p>
-              <p className="text-base md:text-xl lg:text-2xl xl:text-3xl text-[#EFE8D8]">
+              <p className="text-base md:text-lg lg:text-[22px] xl:text-2xl text-[#EFE8D8]">
                 години искуство
               </p>
             </div>
@@ -133,7 +133,7 @@ const DesktopHome = () => {
               <p className="xl:text-[175px] lg:text-[150px] md:text-9xl text-[#EFE8D8] font-bold">
                 50+
               </p>
-              <p className="text-base md:text-xl lg:text-2xl xl:text-3xl text-[#EFE8D8]">
+              <p className="text-base md:text-lg lg:text-[22px] xl:text-2xl text-[#EFE8D8]">
                 настани секоја година
               </p>
             </div>

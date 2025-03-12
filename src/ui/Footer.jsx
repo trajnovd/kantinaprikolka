@@ -5,13 +5,13 @@ function Footer() {
   return (
     <footer className="bg-[#77846E] text-[#EFE8DB] py-8">
       <div
-        className="container mx-auto flex flex-col md:flex-row justify-between
-          items-center md:items-start space-y-8 md:space-y-0 px-4"
+        className="container flex flex-col md:flex-row justify-between items-center
+          md:items-start space-y-8 md:space-y-0 px-4"
       >
         {/* Left Section */}
         <div
           className="flex flex-col items-center md:items-start text-center md:text-left
-            space-y-4"
+            space-y-4 mx-10"
         >
           <img
             src="/Icons/logo-11.svg"
@@ -33,7 +33,7 @@ function Footer() {
         {/* Right Section */}
         <div
           className="flex flex-col items-center md:items-start text-center md:text-left
-            space-y-9"
+            space-y-9 mx-10"
         >
           <p className="text-4xl font-bold md:text-right">
             Закажи го твојот <br /> настан со нас

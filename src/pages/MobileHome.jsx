@@ -11,7 +11,7 @@ const MobileHome = () => {
         <motion.img
           src="Photos/cela prikolka so lugje od daleku.webp" // Mobile top image
           alt="Cocktail Bar"
-          className="w-full h-80 object-cover blur-[1px] brightness-90"
+          className="w-full h-80 object-cover blur-[1px] brightness-90 mt-5"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -26,7 +26,7 @@ const MobileHome = () => {
             transition={{ duration: 0.8 }}
           />
           <motion.h1
-            className="text-[#EFE8D8] text-5xl font-bold mb-4 text-center"
+            className="text-[#EFE8D8] text-4xl font-bold mb-4 text-center"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -61,7 +61,7 @@ const MobileHome = () => {
             justify-center mr-5"
         >
           <motion.blockquote
-            className="italic text-2xl text-[#77846E] leading-relaxed"
+            className="italic text-2xl text-[#77846E] leading-relaxed ml-1"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
