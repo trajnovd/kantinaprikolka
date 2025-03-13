@@ -1,6 +1,6 @@
 import { useState } from "react";
 import emailjs from "emailjs-com";
-import { FaCheck } from "react-icons/fa"; // For package details icons
+import { FaCheck } from "react-icons/fa6"; // For package details icons
 import Modal from "../ui/Modal";
 import { form } from "framer-motion/client";
 import Loader from "../ui/Loader";
@@ -14,7 +14,7 @@ const Booking = () => {
     phone: "",
     date: null,
     package: "Основен пакет",
-    Guests: 50, // Fixed base guests
+    Guests: 20, // Fixed base guests
     time: 4, // Default hours for Основен пакет
     drinksPerGuest: 3, // Default drinks per guest for Основен пакет
     barMenu: "Основен", // Default bar menu for Основен пакет
@@ -37,7 +37,7 @@ const Booking = () => {
     {
       id: "basic",
       name: "Основен пакет",
-      price: "24.000мкд.",
+      price: "9.600мкд.",
       details: [
         "3 пијачки од гостин",
         "1 бармен",
@@ -57,7 +57,7 @@ const Booking = () => {
     {
       id: "standard",
       name: "Стандард пакет",
-      price: "30.000мкд.",
+      price: "12.000мкд.",
       details: [
         "4 пијачки од гостин",
         "2 бармени",
@@ -79,7 +79,7 @@ const Booking = () => {
     {
       id: "premium",
       name: "Премиум пакет",
-      price: "50.000мкд.",
+      price: "20.000мкд.",
       details: [
         "Неограничен пијалок",
         "3 бармени",
@@ -154,14 +154,14 @@ const Booking = () => {
   // Calculate base cost based on package
   const baseCost =
     formData.package === "Премиум пакет"
-      ? 50000
+      ? 20000
       : formData.package === "Стандард пакет"
-        ? 30000
-        : 24000;
+        ? 12000
+        : 9600;
   // Extra guests cost: each 10 extra guests = 6000
   const extraGuestsCost =
-    formData.Guests > 50
-      ? 6000 * ((Number(formData.Guests) - 50) / 10)
+    formData.Guests > 20
+      ? 6000 * ((Number(formData.Guests) - 20) / 10)
       : 0;
 
   // Extra time cost: if not premium, compare selected time to default
@@ -435,11 +435,8 @@ const Booking = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {/* Extra Guests */}
                 <div>
-                  <label className="block mb-2">
-                    Дополнителни гости:
-                  </label>
+                  <label className="block mb-2">Број на гости:</label>
                   <div className="flex items-center space-x-2">
-                    <span className="text-lg">Гости:</span>
                     <div className="border-2 border-[#77846E] bg-[#EFE8D8] text-[#77846E] p-2 rounded">
                       <select
                         name="Guests"
@@ -448,8 +445,8 @@ const Booking = () => {
                         className="bg-transparent text-lg focus:outline-none"
                       >
                         {[
-                          50, 60, 70, 80, 90, 100, 110, 120, 130, 140,
-                          150,
+                          20, 30, 40, 50, 60, 70, 80, 90, 100, 110,
+                          120, 130, 140, 150, 160, 170, 180, 190, 200,
                         ].map((num) => (
                           <option key={num} value={num}>
                             {num}
@@ -463,9 +460,10 @@ const Booking = () => {
                 {/* Time (Hours) */}
 
                 <div>
-                  <label className="block mb-2">Време (саати):</label>
+                  <label className="block mb-2">
+                    Време (часови):
+                  </label>
                   <div className="flex items-center space-x-2">
-                    <span className="text-lg">Саати:</span>
                     <div className="border-2 border-[#77846E] bg-[#EFE8D8] text-[#77846E] p-2 rounded">
                       <select
                         name="time"
@@ -506,7 +504,6 @@ const Booking = () => {
                     Пијачки по гостин:
                   </label>
                   <div className="flex items-center space-x-2">
-                    <span className="text-lg">Број:</span>
                     <div className="border-2 border-[#77846E] bg-[#EFE8D8] text-[#77846E] p-2 rounded">
                       <select
                         name="drinksPerGuest"
@@ -557,7 +554,7 @@ const Booking = () => {
                 {/* Extra Bartenders */}
                 <div>
                   <label className="block mb-2">
-                    Дополнителен бармен:
+                    Број на бармени:
                   </label>
                   <div className="border-2 border-[#77846E] bg-[#EFE8D8] text-[#77846E] p-2 rounded w-14">
                     <select
@@ -591,7 +588,7 @@ const Booking = () => {
                 {/* Extra Waiters */}
                 <div>
                   <label className="block mb-2">
-                    Дополнителен келнер:
+                    Број на келнери:
                   </label>
                   <div className="border-2 border-[#77846E] bg-[#EFE8D8] text-[#77846E] p-2 rounded w-14">
                     <select

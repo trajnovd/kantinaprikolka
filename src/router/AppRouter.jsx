@@ -4,13 +4,17 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
-import Home from "../pages/Home";
-import AboutUs from "../pages/AboutUs";
-import Events from "../pages/Events";
-import Contact from "../pages/Contact";
-import Booking from "../pages/Booking";
+import { lazy, Suspense } from "react";
 import Navbar from "../ui/NavBar";
 import Footer from "../ui/Footer";
+import Loader from "../ui/Loader";
+
+// Lazy loading pages
+const Home = lazy(() => import("../pages/Home"));
+const AboutUs = lazy(() => import("../pages/AboutUs"));
+const Events = lazy(() => import("../pages/Events"));
+const Contact = lazy(() => import("../pages/Contact"));
+const Booking = lazy(() => import("../pages/Booking"));
 
 function AppRouter() {
   return (
@@ -27,13 +31,18 @@ function Wrapper() {
   return (
     <>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/booking" element={<Booking />} />
-      </Routes>
+
+      {/* Suspense wrapper to show a fallback while loading */}
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/booking" element={<Booking />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </Suspense>
 
       {/* Only render footer if NOT on /contact */}
       {location.pathname !== "/contact" && <Footer />}
