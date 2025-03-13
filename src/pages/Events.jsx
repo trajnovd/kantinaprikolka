@@ -32,6 +32,27 @@ const Events = () => {
     "/Photos/aperoli so cocktail bar znak.webp",
     "/Photos/kantina-vodno-72.webp",
     "/Photos/kantina-vodno-56.webp",
+    // New images
+    "/Photos/15.03_event_2_1.webp",
+    "/Photos/15.03_event_2_2.webp",
+    "/Photos/15.03_event_2_3.webp",
+    "/Photos/15.03_event_2_4.webp",
+    "/Photos/15.03_event_2_5.webp",
+    "/Photos/aperol_vo_ajnser_v2.webp",
+    "/Photos/DIN_0275.webp",
+    "/Photos/DIN_0343.webp",
+    "/Photos/DIN_0456.webp",
+    "/Photos/DIN_0498.webp",
+    "/Photos/DIN_0552.webp",
+    "/Photos/dvajca_sankeri_rabotat.webp",
+    "/Photos/freepour_vodka.webp",
+    "/Photos/koktel_u_niska_staklena.webp",
+    "/Photos/pravenje_koktel_od_daleku.webp",
+    "/Photos/sanker_filmska.webp",
+    "/Photos/sanker_shejka_v2.webp",
+    "/Photos/sara_u_sank_so_gosti_okolu.webp",
+    "/Photos/zaednicka_rabotna.webp",
+    "/Photos/zenski_sednati_pred_prikolka_nasmeani.webp",
   ];
 
   const handleImageClick = (imgPath) => {
@@ -46,7 +67,7 @@ const Events = () => {
     <div className="bg-[#EFE8DB] overflow-x-hidden pt-16">
       {/* Top Section */}
       <motion.section
-        className="relative w-full h-96 overflow-hidden"
+        className="relative w-full h-[26rem] overflow-hidden" // Changed from h-96
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -169,7 +190,7 @@ const Events = () => {
             tabIndex={0}
           >
             <img
-              src="/Photos/cela prikolka so lugje od daleku.webp"
+              src="/Photos/15.03_event_2_1.webp"
               alt="Прослави"
               className="w-full h-full object-cover object-center"
             />
@@ -236,7 +257,7 @@ const Events = () => {
             tabIndex={0}
           >
             <img
-              src="/Photos/kantina-vodno-72.webp"
+              src="/Photos/cela prikolka so lugje od daleku.webp"
               alt="Свадби"
               className="w-full h-full object-cover object-center"
             />
@@ -259,15 +280,18 @@ const Events = () => {
               2xl:text-5xl leading-relaxed tracking-tight md:tracking-normal
               text-right"
           >
-            Нека вашиот <strong>голем ден</strong> <br />
-            биде елегантен и радосен{" "}
-            <br className="hidden md:block" />– нашиот бар ќе додаде{" "}
-            <strong>современ печат</strong>.
+            Нека вашиот <strong>голем ден</strong> биде <br />{" "}
+            елегантен и радосен – нашиот{" "}
+            <br className="hidden md:block" /> бар ќе додаде{" "}
+            <strong>современ печат</strong>.{" "}
             <br className="hidden md:block" />
-            Со избрани коктели и детали, ќе создадеме{" "}
-            <br className="hidden md:block" />{" "}
-            <strong>моменти што ќе ги освојат</strong>
-            <br className="hidden md:block" /> срцата на вашите гости.
+            Со избрани коктели и детали,
+            <br className="hidden md:block" /> ќе создадеме{" "}
+            <strong>
+              моменти што <br className="hidden md:block" /> ќе ги
+              освојат
+            </strong>{" "}
+            срцата <br className="hidden md:block" /> на вашите гости.
           </blockquote>
         </div>
       </section>
@@ -305,7 +329,7 @@ const Events = () => {
             tabIndex={0}
           >
             <img
-              src="/Photos/cela prikolka so lugje od daleku.webp"
+              src="/Photos/svadbi.webp"
               alt="Корпоративни"
               className="w-full h-full object-cover object-center"
             />

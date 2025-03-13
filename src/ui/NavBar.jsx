@@ -1,43 +1,56 @@
 import { useState, useEffect, useCallback } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 function Navbar() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [visible, setVisible] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const handleNavigation = useCallback(() => {
-    setIsMenuOpen(false);
-    window.scrollTo(0, 0);
-  }, []);
+  const handleNavigation = useCallback(
+    (to) => {
+      setIsMenuOpen(false);
+      window.scrollTo(0, 0);
+      setTimeout(() => navigate(to), 300); // Match animation duration
+    },
+    [navigate],
+  );
 
-  // Prevent background scrolling when menu is open
   useEffect(() => {
     if (isMenuOpen) {
       document.body.classList.add("overflow-hidden");
     } else {
       document.body.classList.remove("overflow-hidden");
     }
-
-    return () => {
-      document.body.classList.remove("overflow-hidden");
-    };
+    return () => document.body.classList.remove("overflow-hidden");
   }, [isMenuOpen]);
 
   useEffect(() => {
-    let timeout;
+    let ticking = false;
+    const scrollThreshold = 100;
+
     const handleScroll = () => {
-      if (!isMenuOpen) {
-        // Only handle scroll when menu is closed
-        clearTimeout(timeout);
-        timeout = setTimeout(() => {
-          setVisible(window.scrollY < lastScrollY);
-          setLastScrollY(window.scrollY);
-        }, 50);
+      if (!ticking && !isMenuOpen) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          if (currentScrollY < lastScrollY) setVisible(true);
+          else if (
+            currentScrollY > lastScrollY &&
+            currentScrollY > scrollThreshold
+          )
+            setVisible(false);
+          if (currentScrollY < 50) setVisible(true);
+          setLastScrollY(currentScrollY);
+          ticking = false;
+        });
+        ticking = true;
       }
     };
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY, isMenuOpen]);
 
@@ -45,13 +58,19 @@ function Navbar() {
     <>
       <motion.nav
         initial={{ y: 0 }}
-        animate={{ y: visible ? 0 : -100 }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        animate={{ y: visible ? 0 : -100, opacity: visible ? 1 : 0 }}
+        transition={{ type: "tween", duration: 0.3 }}
         className="fixed top-0 left-0 z-50 w-full bg-[#93A387] bg-opacity-80 p-4
           text-white shadow-md backdrop-blur-md"
       >
         <div className="container mx-auto flex items-center justify-between">
-          <Link to="/" onClick={handleNavigation}>
+          <Link
+            to="/"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavigation("/");
+            }}
+          >
             <img
               src="/Icons/prikolce kopce ikona-09.svg"
               alt="Logo"
@@ -59,13 +78,16 @@ function Navbar() {
             />
           </Link>
 
-          {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-36">
             {["/about-us", "/events", "/contact"].map(
               (path, index) => (
                 <Link
                   key={path}
                   to={path}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavigation(path);
+                  }}
                   className="font-semibold text-[#E7DED0] transition-transform hover:scale-105"
                 >
                   {["ЗА НАС", "НАСТАНИ", "КОНТАКТ"][index]}
@@ -74,7 +96,6 @@ function Navbar() {
             )}
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             className="lg:hidden relative h-8 w-8"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -85,10 +106,12 @@ function Navbar() {
                 rotate: isMenuOpen ? 45 : 0,
                 y: isMenuOpen ? 6 : 0,
               }}
+              transition={{ type: "tween", duration: 0.2 }}
             />
             <motion.span
               className="absolute top-3.5 left-1 block h-[2px] w-6 bg-white"
               animate={{ opacity: isMenuOpen ? 0 : 1 }}
+              transition={{ duration: 0.1 }}
             />
             <motion.span
               className="absolute top-5 left-1 block h-[2px] w-6 bg-white"
@@ -96,10 +119,10 @@ function Navbar() {
                 rotate: isMenuOpen ? -45 : 0,
                 y: isMenuOpen ? -6 : 0,
               }}
+              transition={{ type: "tween", duration: 0.2 }}
             />
           </button>
 
-          {/* Desktop Button */}
           <Link
             to="/booking"
             className="hidden lg:block rounded-full bg-[#E7DED0] px-6 py-2 font-semibold
@@ -110,7 +133,6 @@ function Navbar() {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -132,7 +154,10 @@ function Navbar() {
                     key={path}
                     to={path}
                     className="text-white hover:text-gray-200"
-                    onClick={handleNavigation}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigation(path);
+                    }}
                   >
                     {["ЗА НАС", "НАСТАНИ", "КОНТАКТ"][index]}
                   </Link>
@@ -141,7 +166,10 @@ function Navbar() {
               <Link
                 to="/booking"
                 className="mt-8 rounded-full bg-[#E7DED0] px-8 py-3 font-semibold text-[#556B2F]"
-                onClick={handleNavigation}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigation("/booking");
+                }}
               >
                 РЕЗЕРВИРАЈ
               </Link>

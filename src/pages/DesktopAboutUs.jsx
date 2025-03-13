@@ -7,6 +7,7 @@ const DesktopAboutUs = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   const galleryItems = [
+    // Existing gallery items (unchanged)
     {
       src: "/Photos/kantina-vodno-4.webp",
       classes: "col-span-1 row-span-1 md:col-span-1 md:row-span-2",
@@ -28,7 +29,7 @@ const DesktopAboutUs = () => {
       classes: "col-span-1 row-span-1 md:col-span-1 md:row-span-2",
     },
     {
-      src: "/Photos/kantina-vodno-4.webp",
+      src: "/Photos/sara_u_sank_so_gosti_okolu.webp",
       classes: "col-span-1 row-span-1 md:col-span-1 md:row-span-2",
     },
     {
@@ -41,8 +42,30 @@ const DesktopAboutUs = () => {
     },
   ];
 
-  const galleryImages = galleryItems.map((item) => item.src);
-
+  // Add all images to the carousel (including the new ones)
+  const galleryImages = [
+    ...galleryItems.map((item) => item.src), // Existing images
+    // New images
+    "/Photos/15.03_event_2_1.webp",
+    "/Photos/15.03_event_2_2.webp",
+    "/Photos/15.03_event_2_3.webp",
+    "/Photos/15.03_event_2_4.webp",
+    "/Photos/15.03_event_2_5.webp",
+    "/Photos/aperol_vo_ajnser_v2.webp",
+    "/Photos/DIN_0275.webp",
+    "/Photos/DIN_0343.webp",
+    "/Photos/DIN_0456.webp",
+    "/Photos/DIN_0498.webp",
+    "/Photos/DIN_0552.webp",
+    "/Photos/dvajca_sankeri_rabotat.webp",
+    "/Photos/freepour_vodka.webp",
+    "/Photos/koktel_u_niska_staklena.webp",
+    "/Photos/pravenje_koktel_od_daleku.webp",
+    "/Photos/sanker_filmska.webp",
+    "/Photos/sanker_shejka_v2.webp",
+    "/Photos/zaednicka_rabotna.webp",
+    "/Photos/zenski_sednati_pred_prikolka_nasmeani.webp",
+  ];
   const openCarousel = (index) => {
     setSelectedImageIndex(index);
     setIsCarouselOpen(true);
