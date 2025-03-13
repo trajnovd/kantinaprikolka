@@ -6,6 +6,14 @@ const ImageCarousel = ({ images, initialIndex, onClose }) => {
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
 
+  // Disable scrolling on the body when the carousel is open
+  useEffect(() => {
+    document.body.style.overflow = "hidden"; // Disable scrolling
+    return () => {
+      document.body.style.overflow = "auto"; // Re-enable scrolling when the carousel is closed
+    };
+  }, []);
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "ArrowRight") nextSlide();
@@ -74,18 +82,9 @@ const ImageCarousel = ({ images, initialIndex, onClose }) => {
         &#10095;
       </button>
 
-      <div className="fixed bottom-4 flex gap-2 z-50">
-        {images.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrentIndex(i)}
-            className={`w-3 h-3 md:w-4 md:h-4 rounded-full transition-all ${
-            i === currentIndex
-                ? "bg-white scale-125"
-                : "bg-gray-500"
-            }`}
-          />
-        ))}
+      {/* Number Indicator */}
+      <div className="fixed bottom-4 text-white text-lg md:text-xl z-50">
+        {`${currentIndex + 1}/${images.length}`}
       </div>
     </div>
   );

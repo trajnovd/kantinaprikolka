@@ -28,7 +28,7 @@ const MobileAboutUs = () => {
       classes: "col-span-1 row-span-1 md:col-span-1 md:row-span-2",
     },
     {
-      src: "/Photos/kantina-vodno-4.webp",
+      src: "/Photos/sara_u_sank_so_gosti_okolu.webp",
       classes: "col-span-1 row-span-1 md:col-span-1 md:row-span-2",
     },
     {
@@ -62,7 +62,6 @@ const MobileAboutUs = () => {
     "/Photos/pravenje_koktel_od_daleku.webp",
     "/Photos/sanker_filmska.webp",
     "/Photos/sanker_shejka_v2.webp",
-    "/Photos/sara_u_sank_so_gosti_okolu.webp",
     "/Photos/zaednicka_rabotna.webp",
     "/Photos/zenski_sednati_pred_prikolka_nasmeani.webp",
   ];
